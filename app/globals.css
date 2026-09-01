@@ -1,0 +1,172 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0d2547;
+  --foreground: #e2e8f0;
+  --glass-bg: rgba(11, 37, 69, 0.88);
+  --glass-border: rgba(14, 116, 144, 0.18);
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --grad-1: #163b6b;
+  --grad-2: #104f6e;
+
+  /* Landing / Study page background variables (Dark Mode defaults) */
+  --bg-landing: #04070f;
+  --bg-study: #04070f;
+  --fade-color: #04070f;
+  --vignette-color: rgba(13, 37, 71, 0.85);
+  --ambient-gradient: radial-gradient(90% 70% at 70% 20%, rgba(16,74,142,0.45) 0%, transparent 60%), radial-gradient(70% 60% at 20% 85%, rgba(8,92,110,0.35) 0%, transparent 55%);
+}
+
+[data-theme="light"] {
+  /* Ocean-blue — darker step, still clearly lighter/more colourful than dark mode */
+  --background: #1e3a55;
+  --foreground: #cfe0f2;
+  --glass-bg: rgba(14, 38, 65, 0.85);
+  --glass-border: rgba(80, 160, 220, 0.3);
+  --text-primary: #cfe0f2;
+  --text-secondary: #83a8c6;
+  --grad-1: #152e4a;
+  --grad-2: #1a3a57;
+
+  /* Landing / Study page background variables (Light Mode) */
+  --bg-landing: linear-gradient(to bottom, #111f33, #1e3a55);
+  --bg-study: #182e48;
+  --fade-color: #111f33;
+  --vignette-color: rgba(5, 12, 26, 0.6);
+  --ambient-gradient: radial-gradient(90% 70% at 70% 20%, rgba(8,50,110,0.4) 0%, transparent 60%), radial-gradient(70% 60% at 20% 85%, rgba(6,70,100,0.35) 0%, transparent 55%);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background:
+    radial-gradient(110% 80% at 75% 10%, var(--grad-1) 0%, transparent 55%),
+    radial-gradient(80% 70% at 15% 90%, var(--grad-2) 0%, transparent 55%),
+    var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ─── instrument-panel surface: flat, precise, low-noise ─── */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* ─── light mode tailwind overrides ───
+   Background is now a rich ocean-blue (dark enough that light text reads well,
+   clearly lighter / more saturated than the near-black dark mode).              */
+
+/* Text: keep bright/light on the new darker background */
+[data-theme="light"] .text-slate-100 { color: #dbeafe !important; }
+[data-theme="light"] .text-slate-200 { color: #c7d8ee !important; }
+[data-theme="light"] .text-slate-300 { color: #b0c8e0 !important; }
+/* Do NOT override .text-white – buttons that need white text keep it */
+
+[data-theme="light"] .text-slate-400 { color: #8ab0cc !important; }
+[data-theme="light"] .text-slate-500 { color: #6e96b4 !important; }
+[data-theme="light"] .text-slate-600 { color: #567999 !important; }
+
+/* Sky / accent – brighten slightly for contrast on the darker bg */
+[data-theme="light"] .text-sky-200  { color: #7dd3fc !important; }
+[data-theme="light"] .text-sky-300  { color: #38bdf8 !important; }
+[data-theme="light"] .text-sky-400  { color: #0ea5e9 !important; }
+
+[data-theme="light"] .text-sky-300\/60,
+[data-theme="light"] .text-sky-300\/50,
+[data-theme="light"] .text-sky-300\/40 {
+  color: rgba(56, 189, 248, 0.7) !important;
+}
+
+/* Borders: subtle glowing ocean-blue */
+[data-theme="light"] .border-sky-500\/30,
+[data-theme="light"] .border-sky-500\/20,
+[data-theme="light"] .border-sky-500\/40 {
+  border-color: rgba(56, 189, 248, 0.22) !important;
+}
+[data-theme="light"] .border-white\/10 {
+  border-color: rgba(180, 220, 255, 0.14) !important;
+}
+[data-theme="light"] .border-white\/15 {
+  border-color: rgba(180, 220, 255, 0.2) !important;
+}
+[data-theme="light"] .border-white\/5 {
+  border-color: rgba(180, 220, 255, 0.08) !important;
+}
+[data-theme="light"] .border-sky-400\/25,
+[data-theme="light"] .border-sky-400\/30 {
+  border-color: rgba(56, 189, 248, 0.28) !important;
+}
+
+/* Glass / panel backgrounds – translucent dark-ocean-blue */
+[data-theme="light"] .bg-\[\#0b2545\]\/60 {
+  background-color: rgba(15, 42, 78, 0.65) !important;
+}
+[data-theme="light"] .bg-\[\#0b2545\]\/80 {
+  background-color: rgba(15, 42, 78, 0.82) !important;
+}
+/* The circular typewriter overlay */
+[data-theme="light"] .bg-\[\#04070f\]\/75 {
+  background-color: rgba(18, 38, 66, 0.80) !important;
+}
+
+[data-theme="light"] .bg-white\/5 {
+  background-color: rgba(56, 189, 248, 0.07) !important;
+}
+[data-theme="light"] .hover\:bg-sky-400\/10:hover {
+  background-color: rgba(56, 189, 248, 0.12) !important;
+}
+[data-theme="light"] .bg-white\/\[0\.02\] {
+  background-color: rgba(56, 189, 248, 0.03) !important;
+}
+[data-theme="light"] .bg-white\/\[0\.04\] {
+  background-color: rgba(56, 189, 248, 0.06) !important;
+}
+/* Manual footer */
+[data-theme="light"] .bg-black\/40 {
+  background-color: rgba(8, 20, 40, 0.55) !important;
+}
+
+/* Hover text – keep sky accent */
+[data-theme="light"] .hover\:text-white:hover {
+  color: #7dd3fc !important;
+}
+
+/* hairline separators inside panels */
+.hairline {
+  border-color: rgba(148, 180, 220, 0.1);
+}
+
+/* thin custom scrollbar for the control stack */
+.scroll-thin::-webkit-scrollbar {
+  width: 5px;
+}
+.scroll-thin::-webkit-scrollbar-thumb {
+  background: rgba(94, 168, 230, 0.25);
+  border-radius: 4px;
+}
+.scroll-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::selection {
+  background: rgba(56, 189, 248, 0.35);
+}
+
+.hide-scrollbar::-webkit-scrollbar { 
+  display: none; 
+} 
+.hide-scrollbar { 
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
+}
